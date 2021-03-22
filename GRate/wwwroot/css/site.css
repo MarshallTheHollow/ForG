@@ -1,0 +1,237 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.mt-70{
+    text-align:center;
+    margin-top: 70px !important;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background: linear-gradient(315deg, rgba(93,75,216,1) 0%, rgba(31,124,101,1) 50%, rgba(57,46,133,1) 100%);
+}
+.footer {
+  position:absolute;
+  bottom: 0;
+  width: 100%;
+  margin:0 auto;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.glassmorph {
+    background: rgba( 255, 255, 255, 0.15 );
+    backdrop-filter: blur( 5.0px );
+    border-radius: 15px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.upper {
+    position: absolute;
+    width: 100%;
+    margin: 0 auto;
+    white-space: nowrap;
+    line-height: 60px; 
+}
+
+.mycontainer {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    max-width: 1080px;
+}
+
+.mynav {
+    background: rgba( 255, 255, 255, 0.15 );
+    backdrop-filter: blur( 5.0px );
+    border-radius: 15px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    position: fixed;
+    overflow: hidden;
+}
+
+    .mynav a {
+        color: #ffffff;
+        float:left;
+        padding: 15px;
+        font-size: 16px;
+        font-family: 'Franklin Gothic Medium';
+        text-decoration: none;
+    }
+
+        .mynav a:hover {
+            background: rgba( 57, 46, 133, 0.75 );
+            backdrop-filter: blur( 5.0px );
+        }
+
+        .mynav a:active {
+            background: rgb( 57, 46, 133);
+            backdrop-filter: blur( 5.0px );
+        }
+
+        .mynav a.active {
+            background: rgb( 230, 104, 223);
+            backdrop-filter: blur( 5.0px );
+        }
+
+#overlay {
+    position: fixed; 
+    display: none; 
+    width: 100%; 
+    height: 100%; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); 
+    cursor:pointer;
+    z-index: 2; 
+}
+
+.textglow {
+    animation-name: glowing;
+    color:#fff;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    text-shadow: rgb(230, 104, 223) 0px 0px 0px;
+}
+
+@keyframes glowing {
+    0%, 100% {
+        text-shadow: rgb(230, 104, 223) 0px 0px 0px;
+    }
+
+    50% {
+        text-shadow: rgb(230, 104, 223) 0px 0px 30px;
+    }
+}
+
+.logzone {
+    background: rgba( 255, 255, 255, 0.05 );
+    position: fixed;
+    display: none;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;    
+    height: 360px;
+    z-index: 3;
+    transition: width .2s linear;   
+}
+    .logzone {
+        width: 480px;
+    }
+
+.logzone-2 {
+    text-align: center !important;
+}
+
+.Logtext {
+    background-color: rgba(255, 255, 255, 0.75);
+    width: 15em;
+    color: #222222;
+    border-color: rgba(0, 0, 0, 0.50);
+    border-radius: 20px;
+    padding: 2px 10px 2px 10px;
+    margin: 2px;
+}
+
+    .Logtext:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .Logtext:focus {
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 10px rgb(230, 104, 223);
+        outline: none;
+    }
+
+.Twobutts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: rgb(230, 104, 223);
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.logbuttons {
+    background-color: rgba(230, 104, 223, 0.75);
+    font-size: 12px;
+    width: 12em;
+    color: #fff;
+    border-color: rgba(0, 0, 0, 0.50);
+    border-radius: 20px;
+    margin: 0;
+}
+
+    .logbuttons:hover {
+        background-color: rgba(230, 104, 223, 1);
+    }
+    .logbuttons:focus {
+        background-color: rgba(230, 104, 223, 1);
+        box-shadow: 0px 0px 10px rgb(230, 104, 223);
+        outline: none;
+    }

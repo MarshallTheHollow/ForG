@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<base target="_self">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GRate</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body onload="ButtCheck(); true">
+    <header>
+        <div class="mynav mycontainer" style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <a class="active" asp-action="Index">Главная</a>
+                <a href="#games">Игротека</a>
+                <a class="switchbutts" href="#myacc">Мой аккаунт</a>
+                <a class="switchbutts" href="#logout" onclick="Logout()">Офнуть</a>
+            </div>
+                <div class="textglow">
+                    <a class="switchlogin" href="#login" onclick="on()">Войти</a>
+                </div>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <div id="overlay" onclick="off()"></div>
+    <div id="log" class="glassmorph logzone">
+        <div class="logzone-2">
+            <img src="~/res/logo.png" width="64" height="64" alt="logo" style="margin-top:5%; margin-bottom:5%"/>
+            <h5 style="color:#fff; cursor:default;user-select: none;">Войдите в свой аккаунт</h5>
+            <input type="text" class="Logtext" name="login" placeholder="Логин" required />
+            <input type="text" class="Logtext" name="password" placeholder="Пароль" required />
+            <div class="exeption" style=" font-weight: bold; height: 1rem"></div>
+            <div class="Twobutts">
+                <div>
+                    <p style="margin:0;user-select: none;">Я новенький</p>
+                    <button class="logbuttons">Зарегистрироваться</button>
+                </div>
+                <div>
+                    <p style="margin:0;user-select: none;">Я уже смешарик</p>
+                    <button class="logbuttons" onclick="Login(); off()">Войти в аккаунт</button>
+                </div>
+            </div>                    
+        </div>      
+    </div>
+
+    <footer class="footer text-light">
+        <div class="mycontainer glassmorph" style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="padding-left: 15px;">
+                <a href="https://vk.com/marshallthehollow" target="_blank"><img src="~/res/vk.png" width="25" height="25" alt="VK"></a>
+                <a href="https://www.youtube.com/watch?v=MX_ZTi_QuaY" target="_blank"><img src="~/res/yt.png" width="25" height="25" alt="YT"></a>
+                <a href="https://open.spotify.com/artist/0o9dzN70KavcG7J4Je9uro" target="_blank"><img src="~/res/spoty.png" width="25" height="25" alt="Spotify"></a>
+            </div>
+            <div style="padding-right: 15px;">
+                <a asp-area="" asp-controller="Home" asp-action="Index" style="color:#ffffff">GRate&copy;</a> - 2021
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+<script>
+    function on() {
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("log").style.display = "block";
+    }
+
+    function off() {
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("log").style.display = "none";
+    }
+
+    var IsLogin = new Boolean(false);
+    const sbutts = document.querySelectorAll('.switchbutts');
+    const lbutt = document.querySelectorAll('.switchlogin');
+
+    function Login(){
+        IsLogin = true;
+        ButtCheck();
+    }
+
+    function Logout(){
+        IsLogin = false;
+        ButtCheck();
+    }
+
+    function ButtCheck() {
+        sbutts.forEach((elems) => {
+            if (IsLogin) {
+                elems.style.display = "flex";
+            }
+            else {
+                elems.style.display = "none";
+            }
+        })
+
+        lbutt.forEach((elem) => {
+            if (IsLogin) {
+                elem.style.display = "none";
+            }
+            else {
+                elem.style.display = "flex";
+            }
+        })
+    }
+</script>
+
