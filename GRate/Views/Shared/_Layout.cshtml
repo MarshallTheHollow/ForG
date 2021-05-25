@@ -12,9 +12,9 @@
     <header>
         <div class="mynav mycontainer" style="display:flex; justify-content:space-between; align-items:center;">
             <div>
-                <a class="active" asp-action="Index">Главная</a>
+                <a asp-action="Index">Главная</a>
                 <a href="#games">Игротека</a>
-                <a class="switchbutts" href="#myacc">Мой аккаунт</a>
+                <a class="switchbutts" asp-controller="Home" asp-action="LK">Мой аккаунт</a>
                 <a class="switchbutts" href="#logout" onclick="Logout()">Офнуть</a>
             </div>
                 <div class="textglow">
@@ -30,7 +30,7 @@
     <div id="overlay" onclick="off()"></div>
     <div id="log" class="glassmorph logzone">
         <div class="logzone-2">
-            <img src="~/res/logo.png" width="64" height="64" alt="logo" style="margin-top:5%; margin-bottom:5%"/>
+            <img src="~/res/logo.png" width="64" height="64" alt="logo" style="margin-top:5%; margin-bottom:5%; user-select: none"/>
             <h5 style="color:#fff; cursor:default;user-select: none;">Войдите в свой аккаунт</h5>
             <input type="text" class="Logtext" name="login" placeholder="Логин" required />
             <input type="text" class="Logtext" name="password" placeholder="Пароль" required />

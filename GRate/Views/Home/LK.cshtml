@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "GRate - Личный Кабинет";
+}
+<br />
+<br />
+<br />
+<div class="mycontainer">
+    <h1>Личный кабинет</h1>
+    <div class="mynavLK">
+        <a onclick="ProfileOn()">Профиль</a>
+        <a onclick="myGamesOn()">Мои игры</a>
+        <a onclick="FriendsOn()">Друзья</a>
+        <a onclick="addGameOn()">Добавить игру</a>
+    </div>
+    <br />
+    <div class="glassmorph" style="padding:20px">
+        <div id="Profile">
+            <h3>Profile</h3>
+        </div>
+        <div id="myGames" style="display: none;">
+            <h3>myGames</h3>
+        </div>
+        <div id="Friends" style="display: none;">
+            <h3>Friends</h3>
+        </div>
+        <div id="addGame" style="display: none;">
+            <h3>Добавить игру</h3>
+            <form action="/Home/LK" method="post">
+                <div>
+                    <h5>Название игры</h5>
+                    <input type="text" class="Logtext" name="GameName" required />
+                </div>
+                <div>
+                    <h5>Название разработчика</h5>
+                    <input type="text" class="Logtext" name="GameCompanyName" required />
+                </div>
+                <div>
+                    <h5>Жанр игры</h5>
+                    <input type="text" class="Logtext" name="GameGenre" required />
+                </div>
+                <div>
+                    <h5>Дата выхода</h5>
+                    <input type="date" class="Logtext" name="GameReleaseTime" required />
+                </div>               
+                <button type="submit" class="logbuttons" style="float:right">Фиксируем</button>        
+                <br />
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    var divProfile = document.getElementById("Profile");
+    var divmyGames = document.getElementById("myGames");
+    var divFriends = document.getElementById("Friends");
+    var divaddGame = document.getElementById("addGame");
+
+    function ProfileOn() {
+        OffAll();
+        divProfile.style.display = "block";
+    }
+
+    function myGamesOn() {
+        OffAll();
+        divmyGames.style.display = "block";
+    }
+    function FriendsOn() {
+        OffAll();
+        divFriends.style.display = "block";
+    }
+
+    function addGameOn() {
+        OffAll();
+        divaddGame.style.display = "block";
+    }
+
+    function OffAll() {
+        divProfile.style.display = "none";
+        divmyGames.style.display = "none";
+        divFriends.style.display = "none";
+        divaddGame.style.display = "none";
+    }
+</script>

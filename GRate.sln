@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GRate", "GRate\GRate.csproj", "{E3EA531F-5C54-4554-8187-A5B0CD0DCC34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GRate", "GRate\GRate.csproj", "{E3EA531F-5C54-4554-8187-A5B0CD0DCC34}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DbGames", "..\DbGames\DbGames.sqlproj", "{BBF6FEF4-0F78-41DD-A199-63B222209D9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,12 @@ Global
 		{E3EA531F-5C54-4554-8187-A5B0CD0DCC34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3EA531F-5C54-4554-8187-A5B0CD0DCC34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3EA531F-5C54-4554-8187-A5B0CD0DCC34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF6FEF4-0F78-41DD-A199-63B222209D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF6FEF4-0F78-41DD-A199-63B222209D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF6FEF4-0F78-41DD-A199-63B222209D9D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BBF6FEF4-0F78-41DD-A199-63B222209D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF6FEF4-0F78-41DD-A199-63B222209D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF6FEF4-0F78-41DD-A199-63B222209D9D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
