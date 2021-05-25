@@ -15,31 +15,47 @@
     <br />
     <div class="glassmorph" style="padding:20px">
         <div id="Profile">
-            <h3>Profile</h3>
+            <h3>Профиль</h3>
+            <div style="display:inline-block">
+                <div>
+                    <h6>Имя пользователя</h6>
+                    <input type="text" class="Logtext" name="AccountName" value="AccountName" />
+                </div>
+                <div style="margin-bottom:8px;">
+                    <h6>Пароль</h6>
+                    <input type="password" class="Logtext" name="AccountPassword" value="AccountPassword" />
+                </div>
+            </div>
+            <div class="AccountImg">
+                <img src="~/res/logo.png" />
+            </div><br />
+            <button type="submit" class="logbuttons" >Сохранить изменения</button>
         </div>
         <div id="myGames" style="display: none;">
-            <h3>myGames</h3>
+            <h3>Мои игры</h3>
         </div>
         <div id="Friends" style="display: none;">
-            <h3>Friends</h3>
+            <h3>Друзья</h3>
+            <h6 class="text-center">Ха-ха, у тебя нет друзей</h6>
+            <h6 class="text-center">(или разработчик еще не реализовал такую функцию)</h6>
         </div>
         <div id="addGame" style="display: none;">
             <h3>Добавить игру</h3>
             <form action="/Home/LK" method="post">
                 <div>
-                    <h5>Название игры</h5>
+                    <h6>Название игры</h6>
                     <input type="text" class="Logtext" name="GameName" required />
                 </div>
                 <div>
-                    <h5>Название разработчика</h5>
+                    <h6>Название разработчика</h6>
                     <input type="text" class="Logtext" name="GameCompanyName" required />
                 </div>
                 <div>
-                    <h5>Жанр игры</h5>
+                    <h6>Жанр игры</h6>
                     <input type="text" class="Logtext" name="GameGenre" required />
                 </div>
                 <div>
-                    <h5>Дата выхода</h5>
+                    <h6>Дата выхода</h6>
                     <input type="date" class="Logtext" name="GameReleaseTime" required />
                 </div>               
                 <button type="submit" class="logbuttons" style="float:right">Фиксируем</button>        

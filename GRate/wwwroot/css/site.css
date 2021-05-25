@@ -67,7 +67,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background: linear-gradient(160deg, #80D0C7 0%, #0093E9 100%);
+    background: linear-gradient(135deg, rgba(18,67,156,1) 0%, rgba(134,212,224,1) 100%);
 }
 .footer {
   position:absolute;
@@ -108,6 +108,7 @@ body {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     position: fixed;
     overflow: hidden;
+    z-index:100;
 }
 
     .mynav a {
@@ -120,7 +121,7 @@ body {
     }
 
         .mynav a:hover {
-            background: rgba( 230, 104, 223, 0.5 );
+            background: rgba( 230, 104, 223, 0.75 );
             backdrop-filter: blur( 5.0px );
         }
 
@@ -274,3 +275,64 @@ body {
             background: rgb( 230, 104, 223);
             backdrop-filter: blur( 5.0px );
         }
+
+.AccountImg {
+    display: inline-block;
+    float: right;
+    user-select: none;
+}
+    .AccountImg img {
+        width: 150px;
+        height: 150px;
+    }
+        .AccountImg img:hover {
+            padding: 5px;
+            border-radius: 30px;
+            background-color: rgba(255, 255, 255, 0.50);
+            cursor: pointer;
+        }
+
+.MenuCenter{
+    display:flex;
+    justify-content:space-evenly;
+}
+
+
+.MainMenu {
+    height:30%;
+    width:30%;
+    margin:10px;
+    position: relative;
+    display:inline-block;
+}
+.MainMenuImg {
+    width: 100%;
+    height: 100%; 
+    object-fit:cover;
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.MainMenuText {
+    color: #212121;
+    font-weight: bold;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur( 3.0px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 5px;
+    border-radius: 10px;
+    bottom: 10%;
+    left: 5%;
+    right: 5%;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+    .MainMenuText:hover {
+        background-color: rgba(255, 255, 255, 0.6);
+        color: #212121;
+        text-decoration:none;
+    }
+
