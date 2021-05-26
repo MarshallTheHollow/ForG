@@ -23,7 +23,10 @@
                 </div>
                 <div style="margin-bottom:8px;">
                     <h6>Пароль</h6>
-                    <input type="password" class="Logtext" name="AccountPassword" value="AccountPassword" />
+                    <div class="password" style="position: relative;">
+                        <input type="password" class="Logtext" id="password-input" name="AccountPassword" value="AccountPassword" />
+                        <a class="password-control" onclick="return show_hide_password(this);"></a>
+                    </div>
                 </div>
             </div>
             <div class="AccountImg">
@@ -99,5 +102,17 @@
         divmyGames.style.display = "none";
         divFriends.style.display = "none";
         divaddGame.style.display = "none";
+    }
+
+    function show_hide_password(target) {
+        var input = document.getElementById('password-input');
+        if (input.getAttribute('type') == 'password') {
+            target.classList.add('view');
+            input.setAttribute('type', 'text');
+        } else {
+            target.classList.remove('view');
+            input.setAttribute('type', 'password');
+        }
+        return false;
     }
 </script>

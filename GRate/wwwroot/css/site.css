@@ -299,11 +299,11 @@ body {
 
 
 .MainMenu {
-    height:30%;
-    width:30%;
-    margin:10px;
+    height: 30%;
+    width: 30%;
+    margin: 10px;
     position: relative;
-    display:inline-block;
+    display: inline-block;
 }
 .MainMenuImg {
     width: 100%;
@@ -315,6 +315,7 @@ body {
 
 .MainMenuText {
     color: #212121;
+    font-size: 10px;
     font-weight: bold;
     position: absolute;
     background-color: rgba(255, 255, 255, 0.3);
@@ -336,3 +337,24 @@ body {
         text-decoration:none;
     }
 
+.password-control {
+    position: absolute;
+    top: 8px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;   
+}
+
+    .password-control:hover {
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .password-control.view {
+        background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
+    }
+        .password-control.view:hover {
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }

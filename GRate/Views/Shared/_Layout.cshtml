@@ -33,7 +33,10 @@
             <img src="~/res/logo.png" width="64" height="64" alt="logo" style="margin-top:5%; margin-bottom:5%; user-select: none"/>
             <h5 style="color:#fff; cursor:default;user-select: none;">Войдите в свой аккаунт</h5>
             <input type="text" class="Logtext" name="login" placeholder="Логин" required />
-            <input type="text" class="Logtext" name="password" placeholder="Пароль" required />
+            <div class="password" style="position: relative;">
+                <input type="password" class="Logtext" id="password-input" name="password" placeholder="Пароль" required />
+                <a class="password-control" onclick="return show_hide_password(this);"></a>
+            </div>          
             <div class="exeption" style=" font-weight: bold; height: 1rem"></div>
             <div class="Twobutts">
                 <div>
@@ -68,6 +71,19 @@
 </html>
 
 <script>
+
+    function show_hide_password(target) {
+        var input = document.getElementById('password-input');
+        if (input.getAttribute('type') == 'password') {
+            target.classList.add('view');
+            input.setAttribute('type', 'text');
+        } else {
+            target.classList.remove('view');
+            input.setAttribute('type', 'password');
+        }
+        return false;
+    }
+
     function on() {
         document.getElementById("overlay").style.display = "block";
         document.getElementById("log").style.display = "block";
