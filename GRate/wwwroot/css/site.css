@@ -280,6 +280,7 @@ body {
     display: inline-block;
     float: right;
     user-select: none;
+    border-radius: 100px;
 }
     .AccountImg img {
         width: 150px;
