@@ -1,4 +1,5 @@
 ﻿using GRate.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,10 +24,16 @@ namespace GRate.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult LK()
         {
-            return View();
+            return Content(User.Identity.Name);
         }
+
+        //public IActionResult LK()
+        //{
+        //    return View();
+        //}
 
         [HttpPost]
         public IActionResult LK(string GameName, string GameCompanyName, string GameGenre, DateTime GameReleaseTime)
