@@ -321,11 +321,11 @@ body {
 
 
 .MainMenu {
-    height: 30%;
-    width: 30%;
+    height: 200px;
+    width: 200px;
     margin: 10px;
     position: relative;
-    display: inline-block;
+    display: block;
 }
 .MainMenuImg {
     width: 100%;
@@ -358,6 +358,32 @@ body {
         color: #212121;
         text-decoration:none;
     }
+
+.MenuAddButt {
+    color: #212121;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur( 3.0px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    margin: 0px;
+    padding-right: 5px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    border-radius: 10px;
+    top: 5%;
+    left: 5%;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+    .MenuAddButt:hover {
+        background-color: rgba(255, 255, 255, 0.6);
+        color: #212121;
+        text-decoration: none;
+    }
+
 .password-control {
     cursor: pointer !important;
     position: absolute;

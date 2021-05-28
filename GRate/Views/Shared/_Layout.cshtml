@@ -16,7 +16,7 @@
             <div class="mynav mycontainer" style="display:flex; justify-content:space-between; align-items:center;">
                 <div>
                     <a asp-action="Index" asp-controller="Home">Главная</a>
-                    <a href="#games">Игротека</a>
+                    <a asp-action="List" asp-controller="Game">Игротека</a>
                     <a class="switchbutts" asp-controller="Home" asp-action="LK">Мой аккаунт</a>
                     <a class="switchbutts" href="#sites">Статьи</a>
                      @if (User.Identity.IsAuthenticated)

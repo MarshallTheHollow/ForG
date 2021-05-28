@@ -11,6 +11,6 @@ namespace GRate.Models
         public int UserId { get; set; }
         public int GameId { get; set; }
         public int Rate { get; set; }
-        public string description {get;set;}
+        public string Description {get;set;}
     }
 }

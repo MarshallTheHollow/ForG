@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "GRate - Список игр";
+}
+@model  GRate.ViewModel.ReviewModel;
+<br /><br /><br />
+            <body>
+                <div class="MenuCenter">
+                    @foreach (GRate.Models.Game g in ViewBag.Game)
+                    {
+                        <div class="MainMenu">
+                            <a class="MenuAddButt" id=@g.Id onclick="Rate(id)">+</a>
+                            <img class="MainMenuImg" src="~/res/test/anime5.png" />
+                            <h6 style="color:#fff">@g.GameName</h6>
+                            <a class="MainMenuText" href="#hui1">@g.GameDiscription</a>
+                        </div>
+                    }
+                </div>
+                <div id="overlay" style="display:none"></div>
+                <div class="logzone-2" style="display:none">
+                    <form asp-action="List" asp-controller="Game" asp-anti-forgery="true">
+                        <h5 style="color:#fff; cursor:default;user-select: none;">Название выбранной игры</h5>
+                        <input class="Logtext" asp-for="Rate" />
+                        <h6 style="color:#fff">Опишите данный продукт</h6>
+                        <input class="Logtext" asp-for="Description" style="height:300px"/>                        
+                    </form>
+                </div>
+            </body>
+
+<script>
+
+</script>

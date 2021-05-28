@@ -39,12 +39,14 @@ namespace GRate.Controllers
         [Authorize]
         public IActionResult Friends()
         {
+            ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
             return View();
         }
 
         [Authorize]
         public IActionResult MyGames()
         {
+            ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
             return View();
         }
 

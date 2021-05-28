@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using GRate.ViewModel; 
 using GRate.Models; 
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace GRate.Controllers
 {
@@ -19,6 +20,7 @@ namespace GRate.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult Register(string message, string errmessage)
         {
+            ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
             ViewBag.message = message;
             ViewBag.errmessage = errmessage;
             ViewBag.Genre = _context.Genres;
@@ -53,6 +55,7 @@ namespace GRate.Controllers
         [Authorize(Roles = "admin")]
         public IActionResult RegisterGenre(string message, string errmessage)
         {
+            ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
             ViewBag.message = message;
             ViewBag.errmessage = errmessage;
             return View();
@@ -77,6 +80,34 @@ namespace GRate.Controllers
                     ModelState.AddModelError("", "Некорректные данные");
             }
             return RedirectToAction("RegisterGenre", "Game", new { errmessage = "Nop" });
+        }
+
+        public IActionResult List()
+        {
+            ViewBag.Game = _context.Games;
+            ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> List(ReviewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                GameReview review = await _context.Review.FirstOrDefaultAsync(r => r.GameId == model.GameId);
+                if (review == null)
+                {
+                    User user = await _context.Users.FirstOrDefaultAsync(u => u.Login == User.Identity.Name);
+                    review = new GameReview { UserId = user.Id, GameId = model.GameId, Description = model.Description, Rate = model.Rate };
+                    _context.Review.Add(review);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("List", "Game", new { message = "Done" });
+                }
+                else
+                    ModelState.AddModelError("", "Некорректные данные");
+            }
+            return RedirectToAction("List", "Game", new { errmessage = "Nop" });
         }
     }
 }

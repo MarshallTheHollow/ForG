@@ -38,7 +38,7 @@ namespace GRate.Models
             string g = "rouge-like";
             Genre firstg = new Genre { Id = 1, Name = g };
             Game firstgame = new Game { Id = 1, GameName = "Dunno", CompanyName = "Pixel Hunting Studio", GenreId = firstg.Id, GameDiscription = "Еще нет", GameReleaseTime = new DateTime(2022, 5, 4, 0, 0, 0), };
-            GameReview gr = new GameReview { Id=1, UserId = adminUser.Id, GameId = firstgame.Id, description = "Лучшее во что я играл", Rate = 5 };
+            GameReview gr = new GameReview { Id=1, UserId = adminUser.Id, GameId = firstgame.Id, Description = "Лучшее во что я играл", Rate = 5 };
             
             modelBuilder.Entity<GameReview>().HasData(new GameReview[] {gr });
             modelBuilder.Entity<Genre>().HasData(new Genre[] { firstg });
