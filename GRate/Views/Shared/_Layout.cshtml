@@ -1,4 +1,5 @@
-﻿@model GRate.ViewModel.RegisterModel
+﻿@using Microsoft.AspNetCore.Authentication.Cookies;
+@using System.Security.Claims;
 <!DOCTYPE html>
 <html lang="en">
 <base target="_self">
@@ -9,20 +10,28 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body onload="ButtCheck(); true">
+<body>
     <header>
-        <div class="mynav mycontainer" style="display:flex; justify-content:space-between; align-items:center;">
-            <div>
-                <a asp-action="Index">Главная</a>
-                <a href="#games">Игротека</a>
-                <a class="switchbutts" asp-controller="Home" asp-action="LK">Мой аккаунт</a>
-                <a class="switchbutts" href="#sites">Статьи</a>
-                <a class="switchbutts" href="#off" onclick="Logout()">Офнуть</a>
+        <form id="myform" asp-action="Logout" asp-controller="Account">
+            <div class="mynav mycontainer" style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <a asp-action="Index" asp-controller="Home">Главная</a>
+                    <a href="#games">Игротека</a>
+                    <a class="switchbutts" asp-controller="Home" asp-action="LK">Мой аккаунт</a>
+                    <a class="switchbutts" href="#sites">Статьи</a>
+                     @if (User.Identity.IsAuthenticated)
+                      {
+                        <a href="#" onclick="document.getElementById('myform').submit(); return false;" class="switchbutts">Офнуть</a>
+                      }
+                </div>
+                <div class="textglow">
+                    @if (User.Identity.IsAuthenticated == false)
+                    {
+                        <a class="switchlogin" asp-controller="Account" asp-action="Login">Войти</a>
+                    }                   
+                </div>
             </div>
-            <div class="textglow">
-                <a class="switchlogin" asp-controller="Account" asp-action="Login">Войти</a>
-            </div>
-        </div>
+        </form>
     </header>
     <div class="mycontainer">
         <main role="main" class="pb-3">
@@ -49,7 +58,7 @@
 </body>
 </html>
 
-<script>
+@*<script>
 
     var IsLogin = new Boolean(false);
     const sbutts = document.querySelectorAll('.switchbutts');
@@ -84,5 +93,5 @@
             }
         })
     }
-</script>
+</script>*@
 

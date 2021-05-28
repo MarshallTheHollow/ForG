@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace GRate.Controllers
@@ -20,13 +21,14 @@ namespace GRate.Controllers
         }
 
         public IActionResult Index()
-        {
+        {           
             return View();
         }
 
         [Authorize]
         public IActionResult LK()
         {
+            ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
             return View();
         }
 

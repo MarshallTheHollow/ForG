@@ -120,6 +120,25 @@ body {
         text-decoration: none;
     }
 
+    .mynav button {
+        background: rgba( 255, 255, 255, 0 );
+        border-radius: 15px;
+        border: 1px solid rgba( 255, 255, 255, 0 );
+        color: #ffffff;
+        float: left;
+        right:5%;
+        padding: 15px;
+        font-size: 16px;
+        font-family: 'Franklin Gothic Medium';
+        text-decoration: none;
+        line-height:normal;
+    }
+
+    .mynav button:hover {
+        background: rgba( 230, 104, 223, 0.75 );
+        backdrop-filter: blur( 5.0px );
+    }
+
         .mynav a:hover {
             background: rgba( 230, 104, 223, 0.75 );
             backdrop-filter: blur( 5.0px );

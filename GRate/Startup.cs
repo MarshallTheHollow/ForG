@@ -25,14 +25,15 @@ namespace GRate
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<UserContext>(options => options.UseSqlServer(connection));
+            string connection = "Server=(localdb)\\mssqllocaldb;Database=rolesappdb;Trusted_Connection=True;";
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
 
             // установка конфигурации подключения
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
                 {
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
             services.AddControllersWithViews();
         }
@@ -40,12 +41,13 @@ namespace GRate
         public void Configure(IApplicationBuilder app)
         {
             app.UseDeveloperExceptionPage();
-
+ 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+ 
             app.UseRouting();
-
-            app.UseAuthentication();    // аутентификация
+ 
+            app.UseAuthentication();
             app.UseAuthorization();     // авторизация
 
             app.UseEndpoints(endpoints =>
