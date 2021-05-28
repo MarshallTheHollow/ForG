@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "GRate - Регистрация в системе";
+}
+@model GRate.ViewModel.RegisterModel
+
+<div id="overlay"></div>
+<div id="log" class="glassmorph logzone">
+    <div class="logzone-2">
+        <form asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
+            <img src="~/res/logo.png" width="64" height="64" alt="logo" style="margin-top:5%; margin-bottom:5%; user-select: none" />
+            <h5 style="color:#fff; cursor:default;user-select: none;">Введите данные для регистрации</h5>
+            <input class="Logtext" asp-for="Login" placeholder="Логин" />
+            <div class="password" style="position: relative;">
+                <input class="Logtext" asp-for="Password" placeholder="Пароль" id="password-input" />
+                <a class="password-control" onclick="return show_hide_password(this);"></a>
+            </div>
+            <div class="password" style="position: relative;">
+                <input class="Logtext" asp-for="ConfirmPassword" placeholder="Повторите пароль" id="password-input2" />
+                <a class="password-control" onclick="return show_hide_password2(this);"></a>
+            </div>
+            <div class="exeption" style=" font-weight: bold; height: 1rem"></div>
+            <div class="Twobutts">
+                <div>
+                    <p style="margin:0;user-select: none;">Я все еще новенький</p>
+                    <button type="submit" class="logbuttons">Зарегистрироваться</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function show_hide_password(target) {
+        var input = document.getElementById('password-input');
+        if (input.getAttribute('type') == 'password') {
+            target.classList.add('view');
+            input.setAttribute('type', 'text');
+        } else {
+            target.classList.remove('view');
+            input.setAttribute('type', 'password');
+        }
+        return false;
+    }
+    function show_hide_password2(target) {
+        var input = document.getElementById('password-input2');
+        if (input.getAttribute('type') == 'password') {
+            target.classList.add('view');
+            input.setAttribute('type', 'text');
+        } else {
+            target.classList.remove('view');
+            input.setAttribute('type', 'password');
+        }
+        return false;
+    }
+</script>

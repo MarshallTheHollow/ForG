@@ -1,4 +1,4 @@
-﻿@model GRate.ViewModel.LoginModel
+﻿@model GRate.ViewModel.RegisterModel
 <!DOCTYPE html>
 <html lang="en">
 <base target="_self">
@@ -17,10 +17,10 @@
                 <a href="#games">Игротека</a>
                 <a class="switchbutts" asp-controller="Home" asp-action="LK">Мой аккаунт</a>
                 <a class="switchbutts" href="#sites">Статьи</a>
-                <a class="switchbutts" href="#logout" onclick="Logout()">Офнуть</a>
+                <a class="switchbutts" href="#off" onclick="Logout()">Офнуть</a>
             </div>
             <div class="textglow">
-                <a class="switchlogin" href="#login" onclick="on()">Войти</a>
+                <a class="switchlogin" asp-controller="Account" asp-action="Login">Войти</a>
             </div>
         </div>
     </header>
@@ -28,32 +28,6 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
-    <div id="overlay" onclick="off()"></div>
-    <div id="log" class="glassmorph logzone">
-        <div class="logzone-2">
-            <form>
-                <div class="validation" asp-validation-summary="ModelOnly"></div>
-                <img src="~/res/logo.png" width="64" height="64" alt="logo" style="margin-top:5%; margin-bottom:5%; user-select: none" />
-                <h5 style="color:#fff; cursor:default;user-select: none;">Войдите в свой аккаунт</h5>
-                <input type="text" class="Logtext" name="login" asp-for="Login" placeholder="Логин" required />
-                <div class="password" style="position: relative;">
-                    <input type="password" class="Logtext" id="password-input" name="password" asp-for="Password" placeholder="Пароль" required />
-                    <a class="password-control" onclick="return show_hide_password(this);"></a>
-                </div>
-                <div class="exeption" style=" font-weight: bold; height: 1rem"></div>
-                <div class="Twobutts">
-                    <div>
-                        <p style="margin:0;user-select: none;">Я новенький</p>
-                        <button asp-action="Register" asp-controller="Account" asp-anti-forgery="true" type="submit" class="logbuttons">Зарегистрироваться</button>
-                    </div>
-                    <div>
-                        <p style="margin:0;user-select: none;">Я уже смешарик</p>
-                        <button asp-action="Login" asp-controller="Account" asp-anti-forgery="true" type="submit" class="logbuttons" onclick="Login(); off()">Войти в аккаунт</button>
-                    </div>
-                </div>
-            </form>
-        </div>
     </div>
 
     <footer class="footer text-light">
@@ -76,28 +50,6 @@
 </html>
 
 <script>
-
-    function show_hide_password(target) {
-        var input = document.getElementById('password-input');
-        if (input.getAttribute('type') == 'password') {
-            target.classList.add('view');
-            input.setAttribute('type', 'text');
-        } else {
-            target.classList.remove('view');
-            input.setAttribute('type', 'password');
-        }
-        return false;
-    }
-
-    function on() {
-        document.getElementById("overlay").style.display = "block";
-        document.getElementById("log").style.display = "block";
-    }
-
-    function off() {
-        document.getElementById("overlay").style.display = "none";
-        document.getElementById("log").style.display = "none";
-    }
 
     var IsLogin = new Boolean(false);
     const sbutts = document.querySelectorAll('.switchbutts');

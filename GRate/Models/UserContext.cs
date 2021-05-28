@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GRate.Models
 {
-    public class UserContext:DbContext
+    public class UserContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public UserContext(DbContextOptions<UserContext> options)
