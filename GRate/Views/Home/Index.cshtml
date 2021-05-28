@@ -2,9 +2,16 @@
     ViewData["Title"] = "GRate - Главная страница";
 }
 <br /><br /><br />
-<div class="text-center">
-    <h1 style="color:#fff">Добро пожаловать в GRate</h1>
-</div>
+            <div class="text-center">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <h3 style="color:#fff">Добро пожаловать в GRate, @User.Identity.Name</h3>
+                }
+                else
+                {
+                    <h3 style="color:#fff">Добро пожаловать в GRate, незнакомец</h3>
+                }
+            </div>
 <body>
     <div class="MenuCenter">
         <div class="MainMenu">
