@@ -67,30 +67,15 @@ namespace GRate.Controllers
                     .FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == model.OldPassword);
                 if (user != null)
                 {
-                    bool IsAdmin = false;
-                    if (user.Role.Id == 1)
-                    {
-                        IsAdmin = true;
-                    }
-                    _context.Users.Remove(user);
-                    user = new User{ Login = model.Login, Password = model.NewPassword};
-                    if (IsAdmin)
-                    {
-                        user.Role = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "admin");
-                    }
-                    else
-                    {
-                        user.Role = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "user");
-                    }
-                    _context.Users.Add(user);
+                    user.Password = model.NewPassword;
                     await _context.SaveChangesAsync();
                     await Authenticate(user); // аутентификация
-                    return RedirectToAction("LK", "Home");
+                    return RedirectToAction("LK", "Home", new {message = "Done" });
                 }
 
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
-            return RedirectToAction("LK","Home");
+            return RedirectToAction("LK","Home", new { errmessage = "Zalupa" });
         }
         [HttpGet]
         public IActionResult Login()

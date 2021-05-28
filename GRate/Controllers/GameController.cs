@@ -10,10 +10,10 @@ namespace GRate.Controllers
 {
     public class GameController : Controller
     {
-        private AppGamesContext _gcontext;
-        public GameController(AppGamesContext context)
+        private ApplicationContext _context;
+        public GameController(ApplicationContext context)
         {
-            _gcontext = context;
+            _context = context;
         }
 
         [Authorize(Roles = "admin")]
@@ -28,16 +28,16 @@ namespace GRate.Controllers
         {
             if (ModelState.IsValid)
             {              
-                Game game = await _gcontext.Games.FirstOrDefaultAsync(g => g.GameName == model.GameName);
+                Game game = await _context.Games.FirstOrDefaultAsync(g => g.GameName == model.GameName);
                 if (game == null)
                 {
                     game = new Game { GameName = model.GameName, CompanyName = model.GameName, GameDiscription = model.GameDiscription, GameReleaseTime = model.GameReleaseTime, Image = model.Image };
-                    Genre GameGenre = await _gcontext.Genres.FirstOrDefaultAsync(r => r.Name == model.Genre);
+                    Genre GameGenre = await _context.Genres.FirstOrDefaultAsync(r => r.Name == model.Genre);
                     if (GameGenre != null)
                         game.Genre = GameGenre;
 
-                    _gcontext.Games.Add(game);
-                    await _gcontext.SaveChangesAsync();
+                    _context.Games.Add(game);
+                    await _context.SaveChangesAsync();
 
                     return RedirectToAction("LK", "Home");
                 }

@@ -14,6 +14,6 @@ namespace GRate.Models
         public Genre Genre { get; set; }
         public string GameDiscription{ get; set; }
         public DateTime GameReleaseTime { get; set; }
-        public string Image { get; set; }
+        public byte[] Image { get; set; }
     }
 }

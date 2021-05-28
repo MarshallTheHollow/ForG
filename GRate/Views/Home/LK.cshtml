@@ -25,7 +25,7 @@
                     <div style="display:inline-block">
                         <div>
                             <h6>Имя пользователя</h6>
-                            <input class="Logtext" asp-for="Login" placeholder="Логин" />
+                            <input style="user-select:none; cursor:default" class="Logtext" asp-for="Login" placeholder="Логин" value=@User.Identity.Name readonly />
                         </div>
                         <div style="margin-bottom:8px;">
                             <h6>Старый пароль</h6>
@@ -43,6 +43,14 @@
                     <div class="AccountImg" onclick="">
                         <img src="~/res/logo.png" />
                     </div><br />
+                    @if (ViewBag.message != null)
+                    {
+                        <p style="font-weight: bold; color:#43f03c">ВСЕ COCK</p>
+                    }
+                    @if (ViewBag.errmessage != null)
+                    {
+                        <p style="font-weight: bold; color:#f61a1a">Введены неверные данные :с</p>
+                    }
                     <button type="submit" class="logbuttons">Сохранить изменения</button>
                 </form>
             </div>
@@ -61,9 +69,7 @@
 
 
 <script>
-    function NewImage{
-        
-    }
+
     var divProfile = document.getElementById("Profile");
     var divmyGames = document.getElementById("myGames");
     var divFriends = document.getElementById("Friends");

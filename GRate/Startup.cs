@@ -27,7 +27,6 @@ namespace GRate
         {
             string connection = "Server=(localdb)\\mssqllocaldb;Database=grateappdb;Trusted_Connection=True;";
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
-            services.AddDbContext<AppGamesContext>(options => options.UseSqlServer(connection));
 
 
             // установка конфигурации подключения

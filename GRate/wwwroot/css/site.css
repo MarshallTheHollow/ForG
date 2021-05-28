@@ -358,12 +358,13 @@ body {
     }
 
 .password-control {
+    cursor: pointer !important;
     position: absolute;
     top: 8px;
     display: inline-block;
     width: 20px;
     height: 20px;
-    background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;   
+    background: url(https://snipp.ru/demo/495/view.svg) 0 0 no-repeat;
 }
 
     .password-control:hover {

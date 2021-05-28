@@ -28,8 +28,10 @@ namespace GRate.Controllers
         }
 
         [Authorize]
-        public IActionResult LK()
+        public IActionResult LK(string message, string errmessage)
         {
+            ViewBag.message = message;
+            ViewBag.errmessage = errmessage;
             ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;           
             return View();
         }
