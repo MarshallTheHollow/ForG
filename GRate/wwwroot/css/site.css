@@ -299,7 +299,7 @@ body {
     display: inline-block;
     float: right;
     user-select: none;
-    border-radius: 100px;
+    border-radius: 100px;   
 }
     .AccountImg img {
         width: 150px;
@@ -312,10 +312,10 @@ body {
             cursor: pointer;
         }
 
-.MenuCenter{
-    display:flex;
-    justify-content:space-evenly;
-}
+    .MenuCenter {
+        display: flex;
+        justify-content: space-evenly;
+    }
 
 
 .MainMenu {

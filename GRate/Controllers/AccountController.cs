@@ -16,7 +16,7 @@ namespace GRate.Controllers
         public AccountController(ApplicationContext context)
         {
             _context = context;
-        }
+        }       
         [HttpGet]
         public IActionResult Register()
         {
@@ -27,7 +27,7 @@ namespace GRate.Controllers
         public async Task<IActionResult> Register(RegisterModel model)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 User user = await _context.Users.FirstOrDefaultAsync(u => u.Login == model.Login);
                 if (user == null)
                 {
@@ -85,13 +85,12 @@ namespace GRate.Controllers
                     _context.Users.Add(user);
                     await _context.SaveChangesAsync();
                     await Authenticate(user); // аутентификация
-
                     return RedirectToAction("LK", "Home");
                 }
 
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
-            return RedirectToAction("LK", "Home");
+            return RedirectToAction("LK","Home");
         }
         [HttpGet]
         public IActionResult Login()

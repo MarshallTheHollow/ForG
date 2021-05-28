@@ -14,7 +14,7 @@
             <a onclick="FriendsOn()">Друзья</a>
             @if (ViewBag.role == "admin")
             {
-                <a id="AdminOnly" onclick="addGameOn()">Добавить игру</a>
+                <a id="AdminOnly" asp-action="Register" asp-controller="Game">Добавить игру</a>
             }
         </div>
         <br />
@@ -30,7 +30,7 @@
                         <div style="margin-bottom:8px;">
                             <h6>Старый пароль</h6>
                             <div class="password" style="position: relative;">
-                                <input class="Logtext" asp-for="OldPassword" placeholder="Старый пароль" id="password-input"/>
+                                <input class="Logtext" asp-for="OldPassword" placeholder="Старый пароль" id="password-input" />
                                 <a class="password-control" onclick="return show_hide_password(this);"></a>
                             </div>
                             <h6>Новый пароль</h6>
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="AccountImg">
+                    <div class="AccountImg" onclick="">
                         <img src="~/res/logo.png" />
                     </div><br />
                     <button type="submit" class="logbuttons">Сохранить изменения</button>
@@ -54,41 +54,19 @@
                 <h3 style="color:#fff">Друзья</h3>
                 <h6 class="text-center">Ха-ха, у тебя нет друзей</h6>
                 <h6 class="text-center">(или разработчик еще не реализовал такую функцию)</h6>
-            </div>
-            <div id="addGame" style="display: none;">
-                <h3 style="color:#fff">Добавить игру</h3>
-                <form action="/Home/LK" method="post">
-                    <div>
-                        <h6>Название игры</h6>
-                        <input type="text" class="Logtext" name="GameName" required />
-                    </div>
-                    <div>
-                        <h6>Название разработчика</h6>
-                        <input type="text" class="Logtext" name="GameCompanyName" required />
-                    </div>
-                    <div>
-                        <h6>Жанр игры</h6>
-                        <input type="text" class="Logtext" name="GameGenre" required />
-                    </div>
-                    <div>
-                        <h6>Дата выхода</h6>
-                        <input type="date" class="Logtext" name="GameReleaseTime" required />
-                    </div>
-                    <button type="submit" class="logbuttons" style="float:right">Фиксируем</button>
-                    <br />
-                </form>
-            </div>
+            </div>           
         </div>
     </div>
 </body>
 
 
 <script>
-
+    function NewImage{
+        
+    }
     var divProfile = document.getElementById("Profile");
     var divmyGames = document.getElementById("myGames");
     var divFriends = document.getElementById("Friends");
-    var divaddGame = document.getElementById("addGame");
 
     function ProfileOn() {
         OffAll();
@@ -104,16 +82,10 @@
         divFriends.style.display = "block";
     }
 
-    function addGameOn() {
-        OffAll();
-        divaddGame.style.display = "block";
-    }
-
     function OffAll() {
         divProfile.style.display = "none";
         divmyGames.style.display = "none";
         divFriends.style.display = "none";
-        divaddGame.style.display = "none";
     }
 
     function show_hide_password(target) {
