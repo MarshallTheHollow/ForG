@@ -17,8 +17,10 @@ namespace GRate.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        public IActionResult Register()
+        public IActionResult Register(string message, string errmessage)
         {
+            ViewBag.message = message;
+            ViewBag.errmessage = errmessage;
             return View();
         }
 
@@ -31,7 +33,7 @@ namespace GRate.Controllers
                 Game game = await _context.Games.FirstOrDefaultAsync(g => g.GameName == model.GameName);
                 if (game == null)
                 {
-                    game = new Game { GameName = model.GameName, CompanyName = model.GameName, GameDiscription = model.GameDiscription, GameReleaseTime = model.GameReleaseTime, Image = model.Image };
+                    game = new Game { GameName = model.GameName, CompanyName = model.GameName, GameDiscription = model.GameDiscription, GameReleaseTime = model.GameReleaseTime};
                     Genre GameGenre = await _context.Genres.FirstOrDefaultAsync(r => r.Name == model.Genre);
                     if (GameGenre != null)
                         game.Genre = GameGenre;
@@ -39,12 +41,41 @@ namespace GRate.Controllers
                     _context.Games.Add(game);
                     await _context.SaveChangesAsync();
 
-                    return RedirectToAction("LK", "Home");
+                    return RedirectToAction("Register", "Game", new { message = "Done" });
                 }
                 else
                     ModelState.AddModelError("", "Некорректные данные");
             }
-            return RedirectToAction("LK", "Home");
+            return RedirectToAction("Register", "Game", new { errmessage = "Nop" });
+        }
+
+        [Authorize(Roles = "admin")]
+        public IActionResult RegisterGenre(string message, string errmessage)
+        {
+            ViewBag.message = message;
+            ViewBag.errmessage = errmessage;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterGenre(GenreRegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Genre genre = await _context.Genres.FirstOrDefaultAsync(gg => gg.Name == model.Name);
+                if (genre == null)
+                {
+                    genre = new Genre { Name = model.Name};                   
+                    _context.Genres.Add(genre);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("RegisterGenre", "Game", new { message = "Done" });
+                }
+                else
+                    ModelState.AddModelError("", "Некорректные данные");
+            }
+            return RedirectToAction("RegisterGenre", "Game", new { errmessage = "Nop" });
         }
     }
 }

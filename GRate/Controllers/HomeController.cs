@@ -36,10 +36,16 @@ namespace GRate.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult LK(string GameName, string GameCompanyName, string GameGenre, DateTime GameReleaseTime)
+        [Authorize]
+        public IActionResult Friends()
         {
-                return View();
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult MyGames()
+        {
+            return View();
         }
 
         public IActionResult Privacy()

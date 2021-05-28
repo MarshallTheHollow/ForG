@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "GRate - Мои друзья";
+}
+<br />
+<br />
+<br />
+<body>
+    <div class="mycontainer">
+        <h1 style="color:#fff">Личный кабинет</h1>
+        <div class="mynavLK">
+            <a asp-action="LK" asp-controller="Home">Профиль</a>
+            <a asp-action="MyGames" asp-controller="Home">Мои игры</a>
+            <a asp-action="Friends" asp-controller="Home">Друзья</a>
+            @if (ViewBag.role == "admin")
+            {
+                <a asp-action="Register" asp-controller="Game">Добавить игру</a>
+                <a asp-action="RegisterGenre" asp-controller="Game">Добавить жанр</a>
+            }
+        </div>
+        <br />
+        <div class="glassmorph" style="padding:20px">
+            <div>
+                <h3 style="color:#fff">Друзья</h3>
+                <h6 class="text-center">Ха-ха, у тебя нет друзей</h6>
+                <h6 class="text-center">(или разработчик еще не реализовал такую функцию)</h6>
+            </div>
+        </div>
+    </div>
+</body>

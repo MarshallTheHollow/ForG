@@ -25,6 +25,10 @@
                     <button type="submit" class="logbuttons">Войти в аккаунт</button>
                 </div>
             </div>
+            @if (ViewBag.message != null)
+            {
+                <p style="font-weight: bold; color:#f61a1a">Ой, что-то пошло не так...</p>
+            }
         </form>
     </div>
 </div>

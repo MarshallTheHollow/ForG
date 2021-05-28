@@ -10,43 +10,48 @@
         <h1 style="color:#fff">Личный кабинет</h1>
         <div class="mynavLK">
             <a asp-action="LK" asp-controller="Home">Профиль</a>
-            <a asp-action="LK" asp-controller="Home">Мои игры</a>
-            <a asp-action="LK" asp-controller="Home">Друзья</a>
-            <a id="AdminOnly" onclick="addGameOn()">Добавить игру</a>           
+            <a asp-action="MyGames" asp-controller="Home">Мои игры</a>
+            <a asp-action="Friends" asp-controller="Home">Друзья</a>
+            <a asp-action="Register" asp-controller="Game">Добавить игру</a>
+            <a asp-action="RegisterGenre" asp-controller="Game">Добавить жанр</a>
         </div>
         <br />
         <div class="glassmorph" style="padding:20px">    
             <form asp-action="Register" asp-controller="Game" asp-anti-forgery="true">
                 <div>
                     <h3 style="color:#fff">Добавить игру</h3>
-                        <div>
-                            <h6>Название игры</h6>
-                            <input type="text" class="Logtext" asp-for="GameName" required />
-                        </div>
-                        <div>
-                            <h6>Название разработчика</h6>
-                            <input type="text" class="Logtext" asp-for="CompanyName" required />
-                        </div>
-                        <div>
-                            <h6>Жанр игры</h6>
-                            <select asp-for="Genre">
-                                <option value="rouge-like">rouge-like</option>
-                            </select>
-                        </div>
-                        <div>
-                            <h6>Описание игры</h6>
-                            <input type="text" class="Logtext" asp-for="GameDiscription" height="800" required />
-                        </div>
-                        <div>
-                            <h6>Дата выхода</h6>
-                            <input type="date" class="Logtext" asp-for="GameReleaseTime" required />
-                        </div>
-                        <div>
-                            <h6>Изображение игры</h6>
-                            <input type="file" class="Logtext" asp-for="Image" required />
-                        </div>
-                        <button type="submit" class="logbuttons" style="float:right">Фиксируем</button>
-                        <br />
+                    <div>
+                        <h6>Название игры</h6>
+                        <input type="text" class="Logtext" asp-for="GameName" required />
+                    </div>
+                    <div>
+                        <h6>Название разработчика</h6>
+                        <input type="text" class="Logtext" asp-for="CompanyName" required />
+                    </div>
+                    <div>
+                        <h6>Жанр игры</h6>
+                        <select asp-for="Genre">
+                            <option value="rouge-like">rouge-like</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h6>Описание игры</h6>
+                        <input type="text" class="Logtext" asp-for="GameDiscription" height="800" required />
+                    </div>
+                    <div>
+                        <h6>Дата выхода</h6>
+                        <input type="date" class="Logtext" asp-for="GameReleaseTime" required />
+                    </div>
+                    @if (ViewBag.message != null)
+                    {
+                        <p style="font-weight: bold; color:#43f03c">ВСЕ COCK</p>
+                    }
+                    @if (ViewBag.errmessage != null)
+                    {
+                        <p style="font-weight: bold; color:#f61a1a">Введены неверные данные :с</p>
+                    }
+                    <button type="submit" class="logbuttons" style="float:right">Фиксируем</button>
+                    <br />
                 </div>
             </form>
         </div>

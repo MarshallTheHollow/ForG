@@ -17,9 +17,10 @@ namespace GRate.Controllers
         {
             _context = context;
         }       
-        [HttpGet]
+
         public IActionResult Register()
         {
+
             return View();
         }
         [HttpPost]
@@ -45,8 +46,8 @@ namespace GRate.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 else
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
-            }
+                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");               
+            }           
             return View(model);
         }
 
@@ -77,7 +78,6 @@ namespace GRate.Controllers
             }
             return RedirectToAction("LK","Home", new { errmessage = "Zalupa" });
         }
-        [HttpGet]
         public IActionResult Login()
         {
             return View();
@@ -99,6 +99,7 @@ namespace GRate.Controllers
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
+            ViewBag.message = "error";
             return View(model);
         }
         private async Task Authenticate(User user)

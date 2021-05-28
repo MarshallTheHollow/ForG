@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "GRate - Добавление жанра";
+}
+@model GRate.ViewModel.GenreRegisterModel
+<br />
+<br />
+<br />
+<body>
+    <div class="mycontainer">
+        <h1 style="color:#fff">Личный кабинет</h1>
+        <div class="mynavLK">
+            <a asp-action="LK" asp-controller="Home">Профиль</a>
+            <a asp-action="MyGames" asp-controller="Home">Мои игры</a>
+            <a asp-action="Friends" asp-controller="Home">Друзья</a>
+            <a asp-action="Register" asp-controller="Game">Добавить игру</a>
+            <a asp-action="RegisterGenre" asp-controller="Game">Добавить жанр</a>
+        </div>
+        <br />
+        <div class="glassmorph" style="padding:20px">
+            <form asp-action="RegisterGenre" asp-controller="Game" asp-anti-forgery="true">
+                <div>
+                    <h3 style="color:#fff">Добавить жанр</h3>
+                    <div>
+                        <h6>Название жанра</h6>
+                        <input type="text" class="Logtext" asp-for="Name" required />
+                    </div>                   
+                    @if (ViewBag.message != null)
+                    {
+                        <p style="font-weight: bold; color:#43f03c">ВСЕ COCK</p>
+                    }
+                    @if (ViewBag.errmessage != null)
+                    {
+                        <p style="font-weight: bold; color:#f61a1a">Введены неверные данные :с</p>
+                    }
+                    <button type="submit" class="logbuttons" style="float:right">Фиксируем</button>
+                    <br />
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
