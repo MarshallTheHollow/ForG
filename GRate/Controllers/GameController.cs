@@ -34,8 +34,8 @@ namespace GRate.Controllers
                 Game game = await _context.Games.FirstOrDefaultAsync(g => g.GameName == model.GameName);
                 if (game == null)
                 {
-                    game = new Game { GameName = model.GameName, CompanyName = model.GameName, GameDiscription = model.GameDiscription, GameReleaseTime = model.GameReleaseTime};
-                    Genre GameGenre = await _context.Genres.FirstOrDefaultAsync(r => r.Name == model.Genre);
+                    game = new Game { GameName = model.GameName, CompanyName = model.CompanyName, GameDiscription = model.GameDiscription, GameReleaseTime = model.GameReleaseTime};
+                    Genre GameGenre = await _context.Genres.FirstOrDefaultAsync(gen => gen.Name ==  model.Genre);
                     if (GameGenre != null)
                         game.Genre = GameGenre;
 
@@ -47,7 +47,7 @@ namespace GRate.Controllers
                 else
                     ModelState.AddModelError("", "Некорректные данные");
             }
-            return RedirectToAction("Register", "Game", new { errmessage = "Nop" });
+            return RedirectToAction("Register", "Game", new { errmessage = $"{model.Genre} " + $"{model.GameName} " + $"{model.CompanyName} " + $"{model.GameDiscription} " + $"{model.GameReleaseTime} " });
         }
 
         [Authorize(Roles = "admin")]

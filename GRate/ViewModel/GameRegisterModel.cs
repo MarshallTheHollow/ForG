@@ -24,8 +24,5 @@ namespace GRate.ViewModel
         [Required(ErrorMessage = "Не указано время релиза")]
         public DateTime GameReleaseTime { get; set; }
 
-        [Required(ErrorMessage = "Не указано изображение")]
-        public byte[] Image { get; set; }
-
     }
 }

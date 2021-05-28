@@ -207,6 +207,7 @@ body {
 
 .Logtext {
     background-color: rgba(255, 255, 255, 0.75);
+    text-align: left;
     width: 15em;
     color: #222222;
     border-color: rgba(0, 0, 0, 0.50);
