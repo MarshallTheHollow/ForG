@@ -21,6 +21,7 @@ namespace GRate.Controllers
         {
             ViewBag.message = message;
             ViewBag.errmessage = errmessage;
+            ViewBag.Genre = _context.Genres;
             return View();
         }
 

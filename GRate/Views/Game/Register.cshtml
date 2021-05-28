@@ -16,7 +16,7 @@
             <a asp-action="RegisterGenre" asp-controller="Game">Добавить жанр</a>
         </div>
         <br />
-        <div class="glassmorph" style="padding:20px">    
+        <div class="glassmorph" style="padding:20px">
             <form asp-action="Register" asp-controller="Game" asp-anti-forgery="true">
                 <div>
                     <h3 style="color:#fff">Добавить игру</h3>
@@ -30,13 +30,16 @@
                     </div>
                     <div>
                         <h6>Жанр игры</h6>
-                        <select asp-for="Genre">
-                            <option value="rouge-like">rouge-like</option>
+                        <select asp-for="Genre" class="Logtext">
+                            @foreach (GRate.Models.Genre g in ViewBag.Genre)
+                            {
+                                <option value=@g.Name>@g.Name</option>
+                            }
                         </select>
                     </div>
                     <div>
                         <h6>Описание игры</h6>
-                        <input type="text" class="Logtext" asp-for="GameDiscription" height="800" required />
+                        <input type="text" class="Logtext" asp-for="GameDiscription" style="height:400px" required />
                     </div>
                     <div>
                         <h6>Дата выхода</h6>
