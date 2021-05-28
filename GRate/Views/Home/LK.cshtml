@@ -1,7 +1,7 @@
-﻿@using System.Security.Claims;
-@{
+﻿@{
     ViewData["Title"] = "GRate - Личный Кабинет";
 }
+@model GRate.ViewModel.RewriteModel
 <br />
 <br />
 <br />
@@ -12,32 +12,39 @@
             <a onclick="ProfileOn()">Профиль</a>
             <a onclick="myGamesOn()">Мои игры</a>
             <a onclick="FriendsOn()">Друзья</a>
-            @if(ViewBag.role == "admin")
-             {
+            @if (ViewBag.role == "admin")
+            {
                 <a id="AdminOnly" onclick="addGameOn()">Добавить игру</a>
-             }          
+            }
         </div>
         <br />
         <div class="glassmorph" style="padding:20px">
             <div id="Profile">
                 <h3 style="color:#fff">Профиль</h3>
-                <div style="display:inline-block">
-                    <div>
-                        <h6>Имя пользователя</h6>
-                        <input type="text" class="Logtext" name="AccountName" value="AccountName" />
-                    </div>
-                    <div style="margin-bottom:8px;">
-                        <h6>Пароль</h6>
-                        <div class="password" style="position: relative;">
-                            <input type="password" class="Logtext" id="password-input" name="AccountPassword" value="AccountPassword" />
-                            <a class="password-control" onclick="return show_hide_password(this);"></a>
+                <form asp-action="Rewrite" asp-controller="Account" asp-anti-forgery="true">
+                    <div style="display:inline-block">
+                        <div>
+                            <h6>Имя пользователя</h6>
+                            <input class="Logtext" asp-for="Login" placeholder="Логин" />
+                        </div>
+                        <div style="margin-bottom:8px;">
+                            <h6>Старый пароль</h6>
+                            <div class="password" style="position: relative;">
+                                <input class="Logtext" asp-for="OldPassword" placeholder="Старый пароль" id="password-input"/>
+                                <a class="password-control" onclick="return show_hide_password(this);"></a>
+                            </div>
+                            <h6>Новый пароль</h6>
+                            <div class="password" style="position: relative;">
+                                <input class="Logtext" asp-for="NewPassword" placeholder="Новый пароль" id="password-input2" />
+                                <a class="password-control" onclick="return show_hide_password2(this);"></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="AccountImg">
-                    <img src="~/res/logo.png" />
-                </div><br />
-                <button type="submit" class="logbuttons">Сохранить изменения</button>
+                    <div class="AccountImg">
+                        <img src="~/res/logo.png" />
+                    </div><br />
+                    <button type="submit" class="logbuttons">Сохранить изменения</button>
+                </form>
             </div>
             <div id="myGames" style="display: none;">
                 <h3 style="color:#fff">Мои игры</h3>
@@ -111,6 +118,17 @@
 
     function show_hide_password(target) {
         var input = document.getElementById('password-input');
+        if (input.getAttribute('type') == 'password') {
+            target.classList.add('view');
+            input.setAttribute('type', 'text');
+        } else {
+            target.classList.remove('view');
+            input.setAttribute('type', 'password');
+        }
+        return false;
+    }
+    function show_hide_password2(target) {
+        var input = document.getElementById('password-input2');
         if (input.getAttribute('type') == 'password') {
             target.classList.add('view');
             input.setAttribute('type', 'text');

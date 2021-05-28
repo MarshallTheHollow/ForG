@@ -28,4 +28,17 @@ namespace GRate.ViewModel
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
+    public class RewriteModel
+    {
+        [Required(ErrorMessage = "Не указан Login")]
+        public string Login { get; set; }
+
+        [Required(ErrorMessage = "Не старый указан пароль")]
+        [DataType(DataType.Password)]
+        public string OldPassword { get; set; }
+
+        [Required(ErrorMessage = "Не новый указан пароль")]
+        [DataType(DataType.Password)]
+        public string NewPassword { get; set; }
+    }
 }

@@ -49,6 +49,50 @@ namespace GRate.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Rewrite()
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Rewrite(RewriteModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await _context.Users
+                    .Include(u => u.Role)
+                    .FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == model.OldPassword);
+                if (user != null)
+                {
+                    bool IsAdmin = false;
+                    if (user.Role.Id == 1)
+                    {
+                        IsAdmin = true;
+                    }
+                    _context.Users.Remove(user);
+                    user = new User{ Login = model.Login, Password = model.NewPassword};
+                    if (IsAdmin)
+                    {
+                        user.Role = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "admin");
+                    }
+                    else
+                    {
+                        user.Role = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "user");
+                    }
+                    _context.Users.Add(user);
+                    await _context.SaveChangesAsync();
+                    await Authenticate(user); // аутентификация
+
+                    return RedirectToAction("LK", "Home");
+                }
+
+                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+            }
+            return RedirectToAction("LK", "Home");
+        }
         [HttpGet]
         public IActionResult Login()
         {
@@ -75,10 +119,11 @@ namespace GRate.Controllers
         }
         private async Task Authenticate(User user)
         {
-            // создаем один claim
+            // создаем claim
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
+                new Claim("Password", user.Password),
                 new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name)
             };
             // создаем объект ClaimsIdentity
