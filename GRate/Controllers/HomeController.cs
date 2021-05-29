@@ -45,8 +45,10 @@ namespace GRate.Controllers
         public IActionResult MyGames()
         {
             User user = _context.Users.FirstOrDefault(user => user.Login == User.Identity.Name);
-            ViewBag.uId = user.Id;
-            ViewBag.Review = _context.Review.ToArray();
+            var myReview = _context.Review.Where(x => x.UserId == user.Id).ToArray();
+            ViewBag.Review = myReview;
+            ViewBag.GameNames = myReview.Select(x => x.Game.GameName).ToArray();
+            ViewBag.Rates = myReview.Select(x => x.Rate).ToArray();
             ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
             return View();
         }

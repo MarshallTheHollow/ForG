@@ -19,7 +19,7 @@
             }
         </div>
         <br />
-        <div class="glassmorph" style="padding:20px">           
+        <div class="glassmorph" style="padding:20px">
             <div>
                 <h3 style="color:#fff">Мои игры</h3>
                 <table style="width:100%">
@@ -29,26 +29,66 @@
                     </tr>
                     @foreach (GRate.Models.GameReview r in ViewBag.Review)
                     {
-                        @if (r.UserId == ViewBag.uId)
-                        {
-                            <tr onclick="DescSwitch('@r.Id')" class="tdstyle1">
-                                <td style="width:50%">@r.Game.GameName</td>
-                                <td style="width:50%">@r.Rate</td>
-                            </tr>
-                            <tr id="@r.Id" class="tdstyle2" hidden>
-                                <td>@r.Description</td>
-                            </tr>
-                        }
+                        <tr onclick="DescSwitch('@r.Id')" class="tdstyle1">
+                            <td style="width:50%">@r.Game.GameName</td>
+                            <td style="width:50%">@r.Rate</td>
+                        </tr>
+                        <tr id="@r.Id" class="tdstyle2" hidden>
+                            <td>@r.Description</td>
+                        </tr>
                     }
                 </table>
             </div>
+            <canvas id="myChart1" style="width: 100%; height: 400px; margin-top:20px;"></canvas>
         </div>
     </div>
 </body>
+
 
 <script>
     function DescSwitch(Id) {
         var table = document.getElementById(Id);
         table.hidden = !table.hidden;
     }
+</script>
+<script src="~/js/Chart.js"></script>
+<script>
+    var graphDataNames = @Json.Serialize(ViewBag.GameNames);
+    var graphDataSums = @Json.Serialize(ViewBag.Rates);
+
+var ctx = document.getElementById('myChart1').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: graphDataNames,
+        datasets: [{
+            label: 'Рейтинг ваших игр',
+            lineTension: 0,
+            data: graphDataSums,
+            backgroundColor: 'rgba(230, 104, 223, 0.8)',
+            borderWidth: 1,
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    fontColor: '#eeeeee'
+                },
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: '#eeeeee'
+                },
+            }]
+        },
+        legend: {
+            labels: {
+                fontColor: "#eeeeee",
+                fontSize: 14
+            }
+        }
+    }
+});
 </script>
