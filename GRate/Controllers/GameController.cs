@@ -82,23 +82,28 @@ namespace GRate.Controllers
             return RedirectToAction("RegisterGenre", "Game", new { errmessage = "Nop" });
         }
 
-        public IActionResult List()
+        public IActionResult List(string message, string errmessage)
         {
+            ViewBag.message = message;
+            ViewBag.errmessage = errmessage;
             ViewBag.Game = _context.Games;
             ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> List(ReviewModel model)
+        public async Task<IActionResult> List(ReviewModel model, int gId)
         {
             if (ModelState.IsValid)
             {
-                GameReview review = await _context.Review.FirstOrDefaultAsync(r => r.GameId == model.GameId);
+                User user = await _context.Users.FirstOrDefaultAsync(u => u.Login == User.Identity.Name);
+                Game game = await _context.Games.FirstOrDefaultAsync(g => g.Id == gId);
+                GameReview review = await _context.Review.FirstOrDefaultAsync(r => r.Game == game && r.User == user);
                 if (review == null)
-                {
-                    User user = await _context.Users.FirstOrDefaultAsync(u => u.Login == User.Identity.Name);
-                    review = new GameReview { UserId = user.Id, GameId = model.GameId, Description = model.Description, Rate = model.Rate };
+                {                   
+                    review = new GameReview { Description = model.Description, Rate = model.Rate };
+                    review.User = user;
+                    review.Game = game;
                     _context.Review.Add(review);
                     await _context.SaveChangesAsync();
 

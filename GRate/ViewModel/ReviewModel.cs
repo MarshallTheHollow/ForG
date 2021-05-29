@@ -11,6 +11,7 @@ namespace GRate.ViewModel
 
         public string Description{ get; set; }
 
-        public int GameId { get; set; }
+        public string Game { get; set; }
+        public string Name { get; set; }
     }
 }
