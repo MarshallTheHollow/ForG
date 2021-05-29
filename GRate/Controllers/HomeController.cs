@@ -14,12 +14,17 @@ namespace GRate.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
-        public HomeController(ILogger<HomeController> logger)
+        private ApplicationContext _context;
+        public HomeController(ApplicationContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -29,7 +34,7 @@ namespace GRate.Controllers
 
         [Authorize]
         public IActionResult LK(string message, string errmessage)
-        {
+        {           
             ViewBag.message = message;
             ViewBag.errmessage = errmessage;
             ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;           
@@ -46,6 +51,9 @@ namespace GRate.Controllers
         [Authorize]
         public IActionResult MyGames()
         {
+            User user = _context.Users.FirstOrDefault(user => user.Login == User.Identity.Name);
+            ViewBag.uId = user.Id;
+            ViewBag.Review = _context.Review;
             ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
             return View();
         }

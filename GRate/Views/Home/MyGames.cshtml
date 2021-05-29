@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "GRate - Мои игры";
 }
+@model GRate.ViewModel.ReviewModel;
 <br />
 <br />
 <br />
@@ -21,7 +22,22 @@
         <div class="glassmorph" style="padding:20px">           
             <div>
                 <h3 style="color:#fff">Мои игры</h3>
-                <h6 class="text-center">Их нет :с</h6>
+                <table style="width:100%">
+                    <tr class="tablestyle">
+                        <th>Название игры</th>
+                        <th>Оценка</th>
+                    </tr>
+                    @foreach (GRate.Models.GameReview r in ViewBag.Review)
+                    {
+                        @if (r.UserId == ViewBag.uId)
+                        {
+                            <tr class="tdstyle">
+                                <td>@r.Game</td>
+                                <td>@r.Rate</td>
+                            </tr>
+                        }
+                    }
+                </table>
             </div>
         </div>
     </div>

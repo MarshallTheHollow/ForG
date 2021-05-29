@@ -4,7 +4,7 @@
 @model  GRate.ViewModel.ReviewModel;
 <br /><br /><br />
             <body>
-                <h1 style="color:#fff">Игротека</h1>
+                <h1 style="color:#fff">Игротека</h1><br />
                 @if (ViewBag.message != null)
                 {
                     <p style="font-weight: bold; color:#43f03c">ВСЕ COCK</p>
@@ -14,22 +14,21 @@
                     <p style="font-weight: bold; color:#f61a1a">Ты уже писал обузор на это</p>
                 }
                 <div class="MenuCenter">
-                    <table>
-                        <tr>
+                    <table style="width:100%">
+                        <tr class="tablestyle">
                             <th>Название игры</th>
                             <th>Разработчик</th>
                             <th>Жанр</th>
                             <th>Дата выхода</th>
                             <th>Описание</th>
                         </tr>
-
                         @foreach (GRate.Models.Game g in ViewBag.Game)
                         {
-                            <tr onclick="on('@g.GameName', '@g.Id')">
+                            <tr class="tdstyle" onclick="on('@g.GameName', '@g.Id')">
                                 <td>@g.GameName</td>
                                 <td>@g.CompanyName</td>
                                 <td>@g.Genre</td>
-                                <td>@g.GameReleaseTime</td>
+                                <td>@g.GameReleaseTime.ToShortDateString()</td>
                                 <td>@g.GameDiscription</td>
                             </tr>
                         }
@@ -37,13 +36,15 @@
                 </div>
                 <div id="overlay" style="display:none" onclick="off()"></div>
                 <form asp-action="List" asp-controller="Game" method="post" asp-anti-forgery="true">
-                    <div id="log" class="logzone-2 glassmorph" style="display:none">
-
+                    <div id="log" class="logzone glassmorph" style="display:none">
+                        <br />
                         <h5 id="text" style="color:#fff; cursor:default;user-select: none;"></h5>
+                        <br />
                         @Html.Hidden("gId", 0, new { id = "gId", name = "gId" })
-                        <input class="Logtext" asp-for="Rate" required />
+                        <input class="Logtext" asp-for="Rate" required /><br />
                         <h6 style="color:#fff">Опишите данный продукт</h6>
-                        <input class="Logtext" asp-for="Description" style="height:300px" required />
+                        <input class="Logtext" asp-for="Description" style="height:100px" required />
+                        <br /><br />
                         <button class="logbuttons" type="submit">пог</button>
                     </div>
                 </form>
@@ -51,7 +52,7 @@
 
 <script>
     function on(gName, gId) {
-        //document.getElementById("overlay").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
         document.getElementById("log").style.display = "block";
         var text = document.getElementById("text");
         text.textContent = gName;
