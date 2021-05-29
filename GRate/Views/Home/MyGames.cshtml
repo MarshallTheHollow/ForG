@@ -23,18 +23,17 @@
             <div>
                 <h3 style="color:#fff">Мои игры</h3>
                 <table style="width:100%">
-                    <tr class="tablestyle">
-                        <th>Название игры</th>
-                        <th>Оценка</th>
+                    <tr class="tablestyle table-responsive">
+                        <th style="width:50%">Название игры</th>
+                        <th style="width:50%">Оценка</th>
                     </tr>
                     @foreach (GRate.Models.GameReview r in ViewBag.Review)
                     {
                         @if (r.UserId == ViewBag.uId)
                         {
-                            <br />
-                            <tr onclick="DescSwitch('@r.Id')" class="tdstyle">
-                                <td>@r.Game.GameName</td>
-                                <td>@r.Rate</td>
+                            <tr onclick="DescSwitch('@r.Id')" class="tdstyle1">
+                                <td style="width:50%">@r.Game.GameName</td>
+                                <td style="width:50%">@r.Rate</td>
                             </tr>
                             <tr id="@r.Id" class="tdstyle2" hidden>
                                 <td>@r.Description</td>

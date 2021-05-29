@@ -7,6 +7,7 @@ using GRate.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GRate.Controllers
 {
@@ -83,12 +84,23 @@ namespace GRate.Controllers
             return RedirectToAction("RegisterGenre", "Game", new { errmessage = "Nop" });
         }
 
-        public IActionResult List(string message, string errmessage)
+        [HttpGet]
+        public IActionResult List(string message, string errmessage, string aumessage, int? genreId)
         {
+
+            if(genreId == 0 || genreId == null)
+            {
+                ViewBag.Game = _context.Games.ToArray();
+            }
+            else
+            {
+                ViewBag.Game = _context.Games.Where(x => x.GenreId == genreId);
+            }
+
             ViewBag.message = message;
             ViewBag.errmessage = errmessage;
-            ViewBag.Game = _context.Games.ToArray();
-            ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
+            ViewBag.aumessage = aumessage;         
+            ViewBag.Genres = _context.Genres.ToArray();
             return View();
         }
 
@@ -98,20 +110,23 @@ namespace GRate.Controllers
             if (ModelState.IsValid)
             {
                 User user = await _context.Users.FirstOrDefaultAsync(u => u.Login == User.Identity.Name);
-                Game game = await _context.Games.FirstOrDefaultAsync(g => g.Id == gId);
-                GameReview review = await _context.Review.FirstOrDefaultAsync(r => r.Game == game && r.User == user);
-                if (review == null)
-                {                   
-                    review = new GameReview { Description = model.Description, Rate = model.Rate };
-                    review.User = user;
-                    review.Game = game;
-                    _context.Review.Add(review);
-                    await _context.SaveChangesAsync();
+                if(user != null){
+                    Game game = await _context.Games.FirstOrDefaultAsync(g => g.Id == gId);
+                    GameReview review = await _context.Review.FirstOrDefaultAsync(r => r.Game == game && r.User == user);
+                    if (review == null)
+                    {
+                        review = new GameReview { Description = model.Description, Rate = model.Rate };
+                        review.User = user;
+                        review.Game = game;
+                        _context.Review.Add(review);
+                        await _context.SaveChangesAsync();
 
-                    return RedirectToAction("List", "Game", new { message = "Done" });
+                        return RedirectToAction("List", "Game", new { message = "Done" });
+                    }
+                    else
+                        ModelState.AddModelError("", "Некорректные данные");
                 }
-                else
-                    ModelState.AddModelError("", "Некорректные данные");
+                return RedirectToAction("List", "Game", new { aumessage = "Nop" });
             }
             return RedirectToAction("List", "Game", new { errmessage = "Nop" });
         }

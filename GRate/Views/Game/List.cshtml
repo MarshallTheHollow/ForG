@@ -13,23 +13,37 @@
                 {
                     <p style="font-weight: bold; color:#f61a1a">Ты уже писал обузор на это</p>
                 }
+                @if (ViewBag.aumessage != null)
+                {
+                    <p style="font-weight: bold; color:#f61a1a">Отзывы могут писать только авторизованные пользователи :с</p>
+                }
+                <form method="get" asp-controller="Game" asp-action="List">
+                    <select class="Logtext" name="genreId" style="height:30px;">
+                        <option value="0">Все жанры</option>
+                        @foreach (var gen in ViewBag.Genres)
+                        {
+                            <option value="@gen.Id">@gen.Name</option>
+                        }
+                    </select>
+                    <button class="logbuttons" type="submit" style="padding:4px 6px 4px 6px; margin:2px; width:100px; height:30px">Поиск</button>
+                </form>
                 <div class="MenuCenter">
                     <table style="width:100%">
                         <tr class="tablestyle">
-                            <th>Название игры</th>
-                            <th>Разработчик</th>
-                            <th>Жанр</th>
-                            <th>Дата выхода</th>
-                            <th>Описание</th>
+                            <th style="width:20%">Название игры</th>
+                            <th style="width:20%">Разработчик</th>
+                            <th style="width:20%">Жанр</th>
+                            <th style="width:20%">Дата выхода</th>
+                            <th style="width:20%">Описание</th>
                         </tr>
                         @foreach (GRate.Models.Game g in ViewBag.Game)
                         {
                             <tr class="tdstyle" onclick="on('@g.GameName', '@g.Id')">
-                                <td>@g.GameName</td>
-                                <td>@g.CompanyName</td>
-                                <td>@g.Genre.Name</td>
-                                <td>@g.GameReleaseTime.ToShortDateString()</td>
-                                <td>@g.GameDiscription</td>
+                                <td style="width:20%">@g.GameName</td>
+                                <td style="width:20%">@g.CompanyName</td>
+                                <td style="width:20%">@g.Genre.Name</td>
+                                <td style="width:20%">@g.GameReleaseTime.ToShortDateString()</td>
+                                <td style="width:20%">@g.GameDiscription</td>
                             </tr>
                         }
                     </table>

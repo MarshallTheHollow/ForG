@@ -418,11 +418,32 @@ body {
     font-weight: bold;
     padding: 5px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
 .tdstyle {
+    width: 100%;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur( 3.0px );
+    border: 1px solid rgba(230, 104, 223, 0.20);
+    color: rgb(0,0,0);
+    font-weight: bold;
+    padding: 5px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top:5px;
+}
+    .tdstyle:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+.tdstyle1 {
     width: 100%;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -436,14 +457,18 @@ body {
     user-select: none;
     transition: all 0.2s ease;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    margin-top: 5px;
 }
-    .tdstyle:hover {
+
+    .tdstyle1:hover {
         background-color: rgba(255, 255, 255, 0.5);
     }
 
 .tdstyle2 {
+    padding-right: 15px;
+    padding-left: 15px;
     width: 100%;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
