@@ -6,6 +6,7 @@ using GRate.ViewModel;
 using GRate.Models; 
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using System.Linq;
 
 namespace GRate.Controllers
 {
@@ -86,7 +87,7 @@ namespace GRate.Controllers
         {
             ViewBag.message = message;
             ViewBag.errmessage = errmessage;
-            ViewBag.Game = _context.Games;
+            ViewBag.Game = _context.Games.ToArray();
             ViewBag.role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
             return View();
         }

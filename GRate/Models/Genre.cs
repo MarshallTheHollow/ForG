@@ -9,7 +9,7 @@ namespace GRate.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Game> Games { get; set; }
+        public virtual List<Game> Games { get; set; }
         public Genre()
         {
             Games = new List<Game>();

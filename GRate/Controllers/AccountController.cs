@@ -63,9 +63,7 @@ namespace GRate.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _context.Users
-                    .Include(u => u.Role)
-                    .FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == model.OldPassword);
+                User user = await _context.Users.FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == model.OldPassword);
                 if (user != null)
                 {
                     user.Password = model.NewPassword;
@@ -88,9 +86,7 @@ namespace GRate.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _context.Users
-                    .Include(u => u.Role)
-                    .FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == model.Password);
+                User user = await _context.Users.FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == model.Password);
                 if (user != null)
                 {
                     await Authenticate(user); // аутентификация

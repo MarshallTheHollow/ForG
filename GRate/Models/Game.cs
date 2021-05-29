@@ -11,7 +11,7 @@ namespace GRate.Models
         public string GameName { get; set; }
         public string CompanyName { get; set; }
         public int? GenreId { get; set; }
-        public Genre Genre { get; set; }
+        public virtual Genre Genre { get; set; }
         public string GameDiscription{ get; set; }
         public DateTime GameReleaseTime { get; set; }
     }

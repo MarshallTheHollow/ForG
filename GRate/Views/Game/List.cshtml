@@ -27,7 +27,7 @@
                             <tr class="tdstyle" onclick="on('@g.GameName', '@g.Id')">
                                 <td>@g.GameName</td>
                                 <td>@g.CompanyName</td>
-                                <td>@g.Genre</td>
+                                <td>@g.Genre.Name</td>
                                 <td>@g.GameReleaseTime.ToShortDateString()</td>
                                 <td>@g.GameDiscription</td>
                             </tr>
@@ -40,6 +40,7 @@
                         <br />
                         <h5 id="text" style="color:#fff; cursor:default;user-select: none;"></h5>
                         <br />
+                        <a class="star"></a><a class="star"></a><a class="star"></a><a class="star"></a><a class="star"></a>
                         @Html.Hidden("gId", 0, new { id = "gId", name = "gId" })
                         <input class="Logtext" asp-for="Rate" required /><br />
                         <h6 style="color:#fff">Опишите данный продукт</h6>

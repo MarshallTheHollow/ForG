@@ -83,3 +83,5 @@ C:\Users\User\source\repos\GRate\GRate\obj\Debug\netcoreapp3.1\Razor\Views\Game\
 C:\Users\User\source\repos\GRate\GRate\obj\Debug\netcoreapp3.1\Razor\Views\Home\Friends.cshtml.g.cs
 C:\Users\User\source\repos\GRate\GRate\obj\Debug\netcoreapp3.1\Razor\Views\Home\MyGames.cshtml.g.cs
 C:\Users\User\source\repos\GRate\GRate\obj\Debug\netcoreapp3.1\Razor\Views\Game\List.cshtml.g.cs
+C:\Users\User\source\repos\GRate\GRate\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\User\source\repos\GRate\GRate\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll

@@ -31,9 +31,13 @@
                     {
                         @if (r.UserId == ViewBag.uId)
                         {
-                            <tr class="tdstyle">
-                                <td>@r.Game</td>
+                            <br />
+                            <tr onclick="DescSwitch('@r.Id')" class="tdstyle">
+                                <td>@r.Game.GameName</td>
                                 <td>@r.Rate</td>
+                            </tr>
+                            <tr id="@r.Id" class="tdstyle2" hidden>
+                                <td>@r.Description</td>
                             </tr>
                         }
                     }
@@ -42,3 +46,10 @@
         </div>
     </div>
 </body>
+
+<script>
+    function DescSwitch(Id) {
+        var table = document.getElementById(Id);
+        table.hidden = !table.hidden;
+    }
+</script>

@@ -26,7 +26,7 @@ namespace GRate
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = "Server=(localdb)\\mssqllocaldb;Database=grateappdb;Trusted_Connection=True;";
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection).UseLazyLoadingProxies());
 
 
             // установка конфигурации подключения
