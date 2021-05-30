@@ -25,7 +25,7 @@ namespace GRate
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = "Server=(localdb)\\mssqllocaldb;Database=grateappdb;Trusted_Connection=True;";
+            string connection = /*"Server=(localdb)\\mssqllocaldb;Database=grateappdb;Trusted_Connection=True;"*/"workstation id=GRatedb.mssql.somee.com;packet size=4096;user id=mrsh_SQLLogin_1;pwd=fqqtypicst;data source=GRatedb.mssql.somee.com;persist security info=False;initial catalog=GRatedb";
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection).UseLazyLoadingProxies());
 
 
