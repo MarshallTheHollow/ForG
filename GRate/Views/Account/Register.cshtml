@@ -9,7 +9,7 @@
         <form asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
             <img src="~/res/logo.png" width="64" height="64" alt="logo" style="margin-top:5%; margin-bottom:5%; user-select: none" />
             <h5 style="color:#fff; cursor:default;user-select: none;">Введите данные для регистрации</h5>
-            <input class="Logtext" asp-for="Login" placeholder="Логин" />
+            <input class="Logtext" id="loginnow" asp-for="Login" placeholder="Логин" />
             <div class="password" style="position: relative;">
                 <input class="Logtext" asp-for="Password" placeholder="Пароль" id="password-input" />
                 <a class="password-control" onclick="return show_hide_password(this);"></a>
@@ -19,7 +19,7 @@
                 <a class="password-control" onclick="return show_hide_password2(this);"></a>
             </div>
             <div class="exeption" style=" font-weight: bold; height: 1rem"></div>
-            <div class="Twobutts">
+            <div class="Twobutts" id="regbutt">
                 <div>
                     <p style="margin:0;user-select: none;">Я все еще новенький</p>
                     <button type="submit" class="logbuttons">Зарегистрироваться</button>
@@ -56,4 +56,61 @@
         }
         return false;
     }
+
+    function ButtCheck() {
+        if (document.querySelector('.exeption').textContent != "") {
+            document.getElementById('regbutt').style.display = 'none';
+        }
+        else {
+            document.getElementById('regbutt').style.display = '';
+        }
+    }
+    const log = document.getElementById('loginnow');
+    const pass = document.getElementById('password-input');
+    const pass2 = document.getElementById('password-input2');
+    function InputCheck() {
+        if (document.querySelector('.myexeption')) {
+            document.querySelector('.myexeption').remove();
+        }
+        var str = String(log.value);
+        var strPas = String(pass.value);
+        var strPas2 = String(pass2.value);
+        let text;
+        text = document.createElement("p");
+        text.classList.add("myexeption");
+        text.style.color = "#f63c3c";
+        if (str.length > 20) {
+            text.textContent = "Логин должен быть меньше 20 символов";
+            document.querySelector('.exeption').appendChild(text);
+        }
+        if (strPas.length > 20) {
+            text.textContent = "Пароль должен быть меньше 20 символов";
+            document.querySelector('.exeption').appendChild(text);
+        }
+        if (str.length > 20 && strPas.length > 20) {
+            text.textContent = "Пароль и Логин должны быть меньше 20 символов";
+            document.querySelector('.exeption').appendChild(text);
+        }
+        if(strPas2 != strPas) {
+            text.textContent = "Пароли должны совпадать";
+            document.querySelector('.exeption').appendChild(text);
+        }
+    }
+    
+    log.addEventListener('keyup', function (event) {
+        InputCheck();
+        ButtCheck();
+    });
+
+    pass.addEventListener('keyup', function (event) {    
+        InputCheck();
+        ButtCheck();
+    });
+    pass2.addEventListener('keyup', function (event) {
+        InputCheck();
+        ButtCheck();
+    });
 </script>
+
+
+
